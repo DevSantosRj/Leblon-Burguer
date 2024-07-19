@@ -14,13 +14,13 @@ const addressWarn = document.getElementById("address-warn")
 
 let cart = [];
 
-// abertura modal
+// modal opening
 cartBtn.addEventListener("click", function () {
     updateCartModal()
     cartModal.style.display = "flex"
 })
 
-// fechamento modal
+// modal closure
 cartModal.addEventListener("click", function (event) {
     if (event.target === cartModal) {
         cartModal.style.display = "none"
@@ -40,14 +40,14 @@ menu.addEventListener("click", function (event) {
         const name = parentButton.getAttribute("data-name")
         const price = parseFloat(parentButton.getAttribute("data-price"))
 
-        // adiciobnar no carrinho
+        // add to cart
         addToCart(name, price)
 
     }
 })
 
 
-// função para adicionar no carrinho
+// function to add to cart
 function addToCart(name, price) {
 
     const existingItem = cart.find(item => item.name === name)
@@ -68,7 +68,7 @@ function addToCart(name, price) {
 }
 
 
-// atualiza o carrinho
+// update cart
 
 function updateCartModal() {
     cartItemsContainer.innerHTML = "";
@@ -108,7 +108,7 @@ function updateCartModal() {
     cartCounter.innerHTML = cart.length;
 }
 
-// função para remover item do carrinho
+// function to remove item from cart
 
 cartItemsContainer.addEventListener("click", function (event){
     if(event.target.classList.contains("remove-from-cart-btn")){
@@ -135,7 +135,7 @@ function removeItemCArt(name){
     }
 }
 
-// virificação de endereço do carrinho
+// Cart address verification
 addressInput.addEventListener("input", function(){
     let inputValue = event.target.value;
 
@@ -169,7 +169,7 @@ checkoutBtn.addEventListener("click", function(){
         return;
     }
 
-    // Enviar o pedido para api do WhatsApp
+    // Send the request to WhatsApp api
 
     const cartItems = cart.map((item) => {
         return(
@@ -177,7 +177,7 @@ checkoutBtn.addEventListener("click", function(){
         )
     }).join("")
     const message = encodeURIComponent(cartItems)
-    const phone = "17028443453"
+    const phone = "00000000000"
 
     window.open(`https://wa.me/${phone}?text=${message} Endereço: ${addressInput.value}`, "_blank")
 
@@ -187,13 +187,13 @@ checkoutBtn.addEventListener("click", function(){
 })
 
 
-// Verificar a hora e manipular o card horario
+// Check the time and manipulate the time card
 
 function checkRestaurantOpen(){
     const data = new Date();
     const hora =data.getHours();
-    return hora >= 18 && hora < 22;
-     //true restaurante aberto
+    return hora >= 18 && hora < 23;
+     
 }
 
 const spanItem = document.getElementById("date-span")
@@ -210,7 +210,7 @@ if(isOpen){
 
 
 
-   // -------------- LEMBRETE --------------- \\
-  //     ADICIONAR TAMANHO FIXO NO MODAL       \\
- // ADICIONAR SCROOLBAR PARA VISUALIZAR OS ITEM \\
+   // -------------- REMINDER --------------- \\
+  //        ADD FIXED SIZE IN MODAL            \\
+ //         ADD SCROOLBAR TO VIEW ITEMS         \\
 // --------------------------------------------- \\
